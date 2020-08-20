@@ -7,6 +7,7 @@ import { ApplicationUser } from '../models/application-user';
 import { LoginResult } from '../models/login-result';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
+import { RegistrationUser } from '../models/registration-user';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class AuthService implements OnDestroy {
     window.removeEventListener('storage', this.storageEventListener.bind(this));
   }
 
-  register(user: User): Observable<LoginResult> {
+  register(user: RegistrationUser): Observable<LoginResult> {
     return this.http.post<LoginResult>(`${this.apiUrl}/register`, user)
     .pipe(
       map((x) => {

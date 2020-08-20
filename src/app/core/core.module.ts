@@ -1,5 +1,6 @@
 import { NgModule, APP_INITIALIZER, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { appInitializer } from './services/app-initializer.service';
@@ -8,7 +9,7 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   providers: [
     {
       provide: APP_INITIALIZER,

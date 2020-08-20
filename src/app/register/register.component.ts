@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, User } from '../core';
+import { AuthService, User, RegistrationUser } from '../core';
 import { finalize } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   passwordC =''
   loginError = false;
   private subscription: Subscription;
-  private user : User;
+  private user : RegistrationUser;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,22 +27,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(){}
 
-  register() {
-    if (!this.userName || !this.password || !this.email || !this.passwordC) {
-      return;
-    }
-    if (this.passwordC !== this.password) {
-      return;
-    }
+  register(form) {
+    // if (!this.userName || !this.password || !this.email || !this.passwordC) {
+    //   return;
+    // }
+    // if (this.passwordC !== this.password) {
+    //   return;
+    // }
 
-this.user.name = this.userName;
-this.user.email = this.email;
-this.user.password = this.password;
+// this.user.userName = this.userName;
+// this.user.firstName = this.firstName;
+// this.user.email = this.email;
+// this.user.password = this.password;
 
     this.busy = true;
     const returnUrl = '';
     this.authService
-      .register(this.user)
+      .register(form.value)
       .pipe(finalize(() => (this.busy = false)))
       .subscribe(
         () => {
