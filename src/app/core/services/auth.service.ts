@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
         this.stopTokenTimer();
         this.http.get<LoginResult>(`${this.apiUrl}/user`).subscribe((x) => {
           this._user.next({
-            username: x.username,
+            userName: x.userName,
             roles: x.roles,
             originalUserName: x.originalUserName,
           });
@@ -49,7 +49,7 @@ export class AuthService implements OnDestroy {
     .pipe(
       map((x) => {
         this._user.next({
-          username: x.username,
+          userName: x.userName,
           roles: x.roles,
           originalUserName: x.originalUserName,
         });
@@ -60,7 +60,7 @@ export class AuthService implements OnDestroy {
     );
      /*  tap(async (res:  LoginResult ) => {
 
-        if (res.username) {
+        if (res.userName) {
           await this.storage.set("ACCESS_TOKEN", res.user.access_token);
           await this.storage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
@@ -70,16 +70,18 @@ export class AuthService implements OnDestroy {
     ); */
   }
 
-  login(username: string, password: string) {
+  login(userName: string, password: string) {
     return this.http
-      .post<LoginResult>(`${this.apiUrl}/login`, { username, password })
+      .post<LoginResult>(`${this.apiUrl}/login`, { userName, password })
       .pipe(
         map((x) => {
+          console.log("auth user:" + x)
           this._user.next({
-            username: x.username,
+            userName: x.userName,
             roles: x.roles,
-            originalUserName: x.originalUserName,
+            originalUserName: x.originalUserName
           });
+          
           this.setLocalStorage(x);
           this.startTokenTimer();
           return x;
@@ -113,7 +115,7 @@ export class AuthService implements OnDestroy {
       .pipe(
         map((x) => {
           this._user.next({
-            username: x.username,
+            userName: x.userName,
             roles: x.roles,
             originalUserName: x.originalUserName,
           });

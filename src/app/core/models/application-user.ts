@@ -1,5 +1,5 @@
 export interface ApplicationUser {
-    username: string;
+    userName: string;
     roles: string[];
     originalUserName: string;
   }

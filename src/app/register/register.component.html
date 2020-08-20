@@ -1,1 +1,81 @@
-<p>register works!</p>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+<div class="card mt-2">
+    <div class="card-header">
+        <h3>User Registration</h3>
+    </div>
+    <div class="card-body">
+<form (ngSubmit)="register()">
+    <div class="form-group">
+    <label for="userName">Username</label>
+    
+      <input
+        type="text"
+        id="userName"
+        name="username"
+        [(ngModel)]="userName"
+        class="form-control"
+        placeholder="Username"
+        required
+        autofocus
+      />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        
+          <input
+            type="text"
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            class="form-control"
+            placeholder="Email"
+            required
+            autofocus
+          />
+        </div>
+    
+
+    <div class="form-group">
+    <label for="inputPassword">Password</label>
+      <input
+        type="password"
+        id="inputPassword"
+        name="password"
+        [(ngModel)]="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+        <label for="inputPassword">Password Confirm</label>
+          <input
+            type="password"
+            id="inputPasswordC"
+            name="passwordC"
+            [(ngModel)]="passwordC"
+            class="form-control"
+            placeholder="Password Confirm"
+            required
+          />
+        </div>
+  
+    <div class="checkbox mb-3 text-danger" *ngIf="loginError">
+      Login failed. Please try again.
+    </div>
+    <button
+      type="submit"
+      class="btn btn-lg btn-primary"
+      [disabled]="busy"
+    >
+      Register
+    </button>
+  
+  </form>
+</div>
+</div>
+</div>
+</div>

@@ -1,5 +1,5 @@
 export interface LoginResult {
-    username: string;
+    userName: string;
     roles: string[];
     originalUserName: string;
     accessToken: string;

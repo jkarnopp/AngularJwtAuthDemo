@@ -1,1 +1,29 @@
-<p>home works!</p>
+<section class="container">
+    <div
+      class="card mt-4 shadow"
+      *ngIf="authService.user$ | async as applicationUser; else login"
+    >
+      <h4 class="card-header">Hi {{ applicationUser.userName }},</h4>
+      <div class="card-body">
+        <div class="m-2">
+          <h6>Your access token is</h6>
+          {{ accessToken }}
+        </div>
+        <div class="m-2">
+          <h6>Your refresh token is</h6>
+          {{ refreshToken }}
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template #login>
+    <div class="card mt-4 shadow">
+      <h4 class="card-header">You have been logged out</h4>
+      <div class="card-body">
+        <div class="m-2">
+          Please click <a routerLink="login">here</a> to login.
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  

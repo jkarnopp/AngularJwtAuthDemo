@@ -1,1 +1,65 @@
-<p>login works!</p>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+<div class="card mt-2">
+    <div class="card-header">
+        <h3>User Login</h3>
+    </div>
+    <div class="card-body">
+<form (ngSubmit)="login()">
+    <div class="form-group">
+    <label for="userName">Username</label>
+    
+      <input
+        type="text"
+        id="userName"
+        name="username"
+        [(ngModel)]="userName"
+        class="form-control"
+        placeholder="Username"
+        required
+        autofocus
+      />
+    </div>
+
+    <div class="form-group">
+    <label for="inputPassword">Password</label>
+      <input
+        type="password"
+        id="inputPassword"
+        name="password"
+        [(ngModel)]="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+  
+    <div class="checkbox mb-3 text-danger" *ngIf="loginError">
+      Login failed. Please try again.
+    </div>
+    <button
+      type="submit"
+      class="btn btn-lg btn-primary"
+      [disabled]="busy"
+    >
+      Sign in
+    </button>
+  
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6 offset-md-3">
+<div class="card">
+    <h4 class="card-header">If you dont have an account</h4>
+    <div class="card-body">
+      <div class="m-2">
+        Please click <a routerLink="/register">here</a> to register.
+      </div>
+    </div>
+  </div> 
+  </div> 
+</div>
