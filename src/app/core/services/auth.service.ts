@@ -4,10 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { map, tap, delay, finalize } from 'rxjs/operators';
 import { ApplicationUser } from '../models/application-user';
-import { LoginResult } from '../models/login-result';
-import { User } from '../models/user';
-import { environment } from 'src/environments/environment';
 import { RegistrationUser } from '../models/registration-user';
+import { LoginUser } from '../models/login-user';
+import { LoginResult } from '../models/login-result';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +46,8 @@ export class AuthService implements OnDestroy {
     window.removeEventListener('storage', this.storageEventListener.bind(this));
   }
 
-  register(user: RegistrationUser): Observable<LoginResult> {
-    return this.http.post<LoginResult>(`${this.apiUrl}/register`, user)
+  register(registrationUser: RegistrationUser): Observable<LoginResult> {
+    return this.http.post<LoginResult>(`${this.apiUrl}/register`, registrationUser)
     .pipe(
       map((x) => {
         this._user.next({
@@ -71,9 +72,9 @@ export class AuthService implements OnDestroy {
     ); */
   }
 
-  login(userName: string, password: string) {
+  login(loginUser: LoginUser) {
     return this.http
-      .post<LoginResult>(`${this.apiUrl}/login`, { userName, password })
+      .post<LoginResult>(`${this.apiUrl}/login`, loginUser)
       .pipe(
         map((x) => {
           console.log("auth user:" + x)

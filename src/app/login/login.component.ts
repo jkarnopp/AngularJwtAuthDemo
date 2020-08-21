@@ -11,8 +11,6 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   busy = false;
-  userName = '';
-  password = '';
   loginError = false;
   private subscription: Subscription;
 
@@ -35,14 +33,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  login() {
-    if (!this.userName || !this.password) {
-      return;
-    }
+  login(form) {
     this.busy = true;
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
     this.authService
-      .login(this.userName, this.password)
+      .login(form.value)
       .pipe(finalize(() => (this.busy = false)))
       .subscribe(
         () => {

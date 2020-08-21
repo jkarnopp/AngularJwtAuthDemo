@@ -5,7 +5,7 @@
         <h3>User Login</h3>
     </div>
     <div class="card-body">
-<form (ngSubmit)="login()">
+<form #form="ngForm" (ngSubmit)="login(form)">
     <div class="form-group">
     <label for="userName">Username</label>
     
@@ -13,10 +13,9 @@
         type="text"
         id="userName"
         name="username"
-        [(ngModel)]="userName"
         class="form-control"
         placeholder="Username"
-        required
+        ngModel required
         autofocus
       />
     </div>
@@ -27,10 +26,9 @@
         type="password"
         id="inputPassword"
         name="password"
-        [(ngModel)]="password"
         class="form-control"
         placeholder="Password"
-        required
+        ngModel required
       />
     </div>
   
